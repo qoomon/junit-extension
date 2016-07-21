@@ -28,7 +28,7 @@ public class LazyTest {
         Callable<TestRule> ruleSupplier = mock(Callable.class);
 
         // When
-        Lazy<TestRule> lazyRule = new Lazy<>(ruleSupplier);
+        new Lazy<>(ruleSupplier);
 
         // Then
         verify(ruleSupplier, never()).call();
