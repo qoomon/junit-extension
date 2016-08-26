@@ -6,8 +6,8 @@
 
     <groupId>com.qoomon.junit.extention</groupId>
     <artifactId>junit-extention</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
 
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
