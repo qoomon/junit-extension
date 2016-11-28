@@ -1,7 +1,7 @@
 # junit-extention
 Java JUnit Utils and Extentions
 
-[![VersionEye](https://img.shields.io/versioneye/d/user/projects/57755ec268ee070047f06511.svg)](https://www.versioneye.com/user/projects/5790aee113b4e100531e9177)
+[![Dependency CI](https://dependencyci.com/github/qoomon/junit-extention/badge)](https://dependencyci.com/github/qoomon/junit-extention)
 
 [![Codacy grade](https://img.shields.io/codacy/grade/d4e120eafc4341aabe1a474aa17008b6.svg)](https://www.codacy.com/app/bengt-brodersen/junit-extention)
 
