@@ -9,8 +9,8 @@ import org.junit.rules.Timeout;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.Java6Assertions.assertThat;
@@ -25,13 +25,13 @@ public class LazyTest {
     public void constructor_SHOULD_not_call_supplier() throws Throwable {
 
         // Given
-        Callable<TestRule> ruleSupplier = mock(Callable.class);
+        Supplier<TestRule> ruleSupplier = mock(Supplier.class);
 
         // When
         new Lazy<>(ruleSupplier);
 
         // Then
-        verify(ruleSupplier, never()).call();
+        verify(ruleSupplier, never()).get();
     }
 
 
@@ -39,7 +39,7 @@ public class LazyTest {
     public void apply_SHOULD_not_call_supplier() throws Throwable {
 
         // Given
-        Callable<TestRule> ruleSupplier = mock(Callable.class);
+        Supplier<TestRule> ruleSupplier = mock(Supplier.class);
         Lazy<TestRule> lazyRule = new Lazy<>(ruleSupplier);
 
         Statement base = mock(Statement.class);
@@ -49,7 +49,7 @@ public class LazyTest {
         lazyRule.apply(base, description);
 
         // Then
-        verify(ruleSupplier, never()).call();
+        verify(ruleSupplier, never()).get();
 
     }
 
@@ -77,7 +77,7 @@ public class LazyTest {
     public void get_WHEN_statement_has_not_ben_evaluated_yet_THROW_exception() throws Throwable {
 
         // Given
-        Callable<TestRule> ruleSupplier = mock(Callable.class);
+        Supplier<TestRule> ruleSupplier = mock(Supplier.class);
         Lazy<TestRule> lazyRule = new Lazy<>(ruleSupplier);
 
         // When

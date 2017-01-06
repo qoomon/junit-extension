@@ -6,6 +6,7 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 
 /**
  * Created by qoomon on 21/07/16.
@@ -15,11 +16,11 @@ import java.util.concurrent.Callable;
  */
 public class Lazy<T extends TestRule> implements TestRule {
 
-    private final Callable<T> ruleSupplier;
+    private final Supplier<T> ruleSupplier;
     private T rule = null;
 
 
-    public Lazy(Callable<T> ruleSupplier) {
+    public Lazy(Supplier<T> ruleSupplier) {
         this.ruleSupplier = ruleSupplier;
     }
 
@@ -28,7 +29,7 @@ public class Lazy<T extends TestRule> implements TestRule {
         return new Statement() {
             @Override
             public void evaluate() throws Throwable {
-                rule = ruleSupplier.call();
+                rule = ruleSupplier.get();
                 rule.apply(base, description).evaluate();
             }
         };
